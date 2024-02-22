@@ -8,33 +8,23 @@ import { getImageUrl } from '@/utils'
 import { secondaryBackgroundColor, textColorWhite } from "@/consts/style";
 
 interface ICity {
-  navigation: {
-    navigate: (path: string) => void
-  },
   name: string,
   country: string,
-  id: number,
   weatherIconUrl: string,
   temp: string
-  onTouchHandler: (id: number) => void
+  onTouchHandler: () => void
 }
 
 export const City = ({
   country,
-  id,
   name,
-  navigation,
   onTouchHandler,
   temp,
   weatherIconUrl
 }: ICity) => {
-  const onTouchEnd = () => {
-    onTouchHandler(id)
-    navigation.navigate('CityWeatherPage')
-  }
 
   return (
-    <View style={styles.card} onTouchEnd={onTouchEnd}>
+    <View style={styles.card} onTouchEnd={onTouchHandler}>
       <View style={styles.weatherIconContainer}>
         <Image style={styles.weatherIcon} source={getImageUrl(weatherIconUrl)}/>
       </View>

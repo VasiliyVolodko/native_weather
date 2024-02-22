@@ -44,7 +44,7 @@ function CityWeatherPage({ navigation }) {
       ['wind speed']: `${wind.speed.toPrecision(2)} m/s`
     }
   }, [list])
-  
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -56,7 +56,7 @@ function CityWeatherPage({ navigation }) {
       <View>
         <View>
           {
-            getData().length !== 0 &&
+            getData.length !== 0 &&
             <Switcher
               textOn='Celsius'
               textOff='Farenheit'
@@ -67,7 +67,7 @@ function CityWeatherPage({ navigation }) {
           <Text style={styles.cityText}>{name}</Text>
           <Text style={styles.weatherDescriptionText}>{list[0].weather[0].description}</Text>
           <Image style={styles.image} source={getImageUrl(list[0].weather[0].icon)} />
-          <Text style={styles.degreeText}>{`${list[0].main.temp.toFixed(0)}\u2103`}</Text>
+          <Text style={styles.degreeText}>{isCelsius ? `${list[0].main.temp.toFixed(0)}\u00B0C` : `${list[0].main.tempFar.toFixed(0)}\u00B0F`}</Text>
         </View>
         <View style={styles.hourlyForecast}>
           <ScrollView horizontal={true}>

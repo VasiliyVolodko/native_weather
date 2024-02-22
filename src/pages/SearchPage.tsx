@@ -39,6 +39,12 @@ function SearchPage({ navigation }) {
 
   const handleEndEditing = async (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
     const cityName = e.nativeEvent.text
+    if (!netInfo.isConnected) {
+      clearData()
+      setError(true, "You are offline")
+      return
+    }
+  
     await fetchData(cityName)
   }
 
@@ -51,13 +57,6 @@ function SearchPage({ navigation }) {
     setValue(e.nativeEvent.text)
   }
 
-  useEffect(() => {
-    if(!netInfo.isConnected) {
-      setError(true, "You are offline")
-    } else {
-      setError(false, '')
-    }
-  },[netInfo])
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -71,7 +70,7 @@ function SearchPage({ navigation }) {
         <ErrorMessage message={errorMessage} />
       }
       {
-        getData().length !==0 &&
+        getData.length !==0 &&
         <Switcher
           textOn='Celsius'
           textOff='Farenheit'
@@ -84,14 +83,15 @@ function SearchPage({ navigation }) {
           ? <LoadingSpinner color="#1D2837" />
           : <FlatList
                 contentContainerStyle={styles.weatherList}
-                data={getData()}
+                data={getData}
                 keyExtractor={item => `lat: ${item.city.coord.lat}; lon: ${item.city.coord.lon}`}
                 renderItem={({ item }) => <City
                   country={item.city.country}
                   name={item.city.name}
-                  id={item.id}
-                  onTouchHandler={setSelectedCity}
-                  navigation={navigation}
+                  onTouchHandler={() => {
+                    setSelectedCity(item.id)
+                    navigation.navigate('CityWeatherPage')
+                  }}
                   temp={isCelsius ? `${item.list[0].main.temp.toFixed(0)}\u00B0C` : `${item.list[0].main.tempFar.toFixed(0)}\u00B0F`}
                   weatherIconUrl={item.list[0].weather[0].icon}
                 />}

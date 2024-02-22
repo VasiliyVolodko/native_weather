@@ -54,7 +54,7 @@ export const CityList = types
     })
   })
   .views(self => ({
-    getData: () => {
+    get getData() {
       return self.forecast
     }
   }))
@@ -66,12 +66,13 @@ export const CityList = types
   }))
   .actions((self) => ({
     fetchData: flow(function* fetchData(cityName: string) {
+      self.forecast = undefined
+
       if(!cityName) {
         self.setError(true, 'Nothing to search')
         return
       }
 
-      self.forecast = undefined
       try {
         self.isLoading = true
         self.setError(false, '')
