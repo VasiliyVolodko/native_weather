@@ -1,0 +1,1 @@
+export const convertCelsiusToFarenheit = (celsius: number) => (celsius * 9 / 5) +32

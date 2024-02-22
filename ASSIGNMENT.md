@@ -1,14 +1,21 @@
 ### Weather Forecast App
 
 The candidate is tasked with creating a mobile weather forecast application using React Native Expo,
-targeting both Android and iOS platforms. The application must fetch and display real-time weather
-data for a specified city using the OpenWeatherMap API, including temperature, humidity, and general
-weather conditions. Users should be able to input or select a city, toggle between Celsius and
-Fahrenheit, and view a user-friendly interface that also handles error states effectively. While the
-core functionality revolves around a single-screen layout featuring a city input field and a weather
-widget, bonus points are awarded for additional features such as a 5-day forecast, a visually
-appealing design with smooth transitions and animations, and robust error handling for edge cases
-and connectivity issues. The project should emphasize clean, modular code, a clear separation of UI
+targeting both Android and iOS platforms.
+- The application must fetch and display real-time weather data for a specified city using the OpenWeatherMap API, including:
+  - temperature
+  - humidity
+  - general weather conditions.
+- Users should be able to:
+  - input or select a city
+  - toggle between Celsius and Fahrenheit
+  - view a user-friendly interface that also handles error states effectively.
+While the core functionality revolves around a single-screen layout featuring a city input field and a weather
+widget, bonus points are awarded for additional features:
+  - 5-day forecast
+  - a visually appealing design with smooth transitions and animations
+  - robust error handling for edge cases and connectivity issues.
+The project should emphasize clean, modular code, a clear separation of UI
 and business logic, and the use of modern React Native methodologies. Upon completion, the candidate
 is expected to publish the code in a public repository and can earn recognition for an innovative
 and responsive user interface.
