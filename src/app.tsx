@@ -1,25 +1,21 @@
-import React from 'react'
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { createContext, useContext } from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import SearchPage from './pages/SearchPage';
+import CityWeatherPage from './pages/CityWeatherPage';
+import { Provider, store } from './store/Root';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Text style={styles.textContainer}>
-        Refer to the task details in <Text style={styles.highlight}>ASSIGNMENT.md</Text>
-      </Text>
-    </View>
+    <Provider value={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="SearchPage">
+          <Stack.Screen name="SearchPage" component={SearchPage} options={{ header: () => null }} />
+          <Stack.Screen name="CityWeatherPage" component={CityWeatherPage} options={{ header: () => null }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  highlight: { fontWeight: 'bold' },
-  textContainer: { textAlign: 'center', margin: 10 },
-})
